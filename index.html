@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+  <head>
+
+    <meta charset="UTF-8">
+
+    <title>Cash Calculator</title>
+
+    <!-- jQuery link -->
+			<script
+      		src="http://code.jquery.com/jquery-3.2.1.js"
+      		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+      		crossorigin="anonymous"></script>    <script type="text/javascript"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Script -->
+    <script src="app.js"></script>
+
+   
+    <input class="form-control"  id="cents" type="text" textarea placeholder= "Enter a number between 0 and 99">
+  
+    <button onclick="myFunction()">Submit</button>
+    
+        
+    <div id="moneyQ"></div>
+      <form id="quarters" >
+        <label>Quarters:</label>
+        <input type="text" id="quarters" class="form-control" />
+      </form><br />
+
+    <div id="moneyD"></div>
+      <form id="dimes" >
+        <label>Dimes:</label>
+        <input type="text" id="dimes" class="form-control" />
+      </form><br /> 
+  
+    <div id="money"></div>
+      <form id="centsN" >
+        <label>Nickels:</label>
+        <input type="text" id="centsN" class="form-control" />
+      </form><br />
+
+    <div id="moneyP"></div>
+      <form id="pennies" >
+        <label>Pennies:</label>
+        <input type="text" id="pennies" class="form-control" />
+      </form><br />
+   
+   
+    <p id="demo"></p>
+
+    <script>
+
+
+
+      function myFunction() {
+        var x = document.getElementById("cents").value;        
+        var moneyQ = document.getElementById("quarters").value;
+        var moneyD = document.getElementById("dimes").value;
+        var money = document.getElementById("centsN").value;
+        var moneyP = document.getElementById("pennies").value;
+        document.getElementById("demo").innerHTML = x;
+        console.log("The Number you entered is: " +x);
+
+        
+    
+        if (x > 24){
+          var quarters = Math.floor(x/25);
+          var cents = x % 25;
+          var diffQ = x % 25;
+          var totalQ = quarters * 25;
+          $("quarters").value = quarters; 
+          // PRINT Number of Nickels
+           $("#moneyQ").html(quarters);
+          
+        }
+
+        if (x > 9){
+          var dimes = Math.floor((x - totalQ)/10);
+          var cents = x % 10;
+          totalD = dimes * 10;
+          $("dimes").value = dimes;
+          $("#moneyD").html(dimes);
+          
+        }
+ 
+       
+       if (x > 4) {
+          var nickels = Math.floor(cents/5);
+          var cents = (x - quarters) % 5;
+          var centsN = parseInt((diffQ - totalD) /5);
+          var totalN = centsN * 5;
+          // PRINT Number of Nickels
+           $("#money").html(centsN);          
+        }
+        
+        if (x > 0) {
+          var sub = totalQ+totalD+totalN;
+          var pennies = Math.abs(sub - x);
+          $("pennies").value = pennies;
+          $("#moneyP").html(pennies);
+          
+        }         
+
+      }  
+
+
+    </script>
+
+  </body>
+
+</html>
